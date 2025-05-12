@@ -4,15 +4,42 @@ import json
 from io import BytesIO
 
 DB_SETTINGS = {
-    "host": "localhost",
+    "host": "dpg-d0h37ejuibrs7385ja8g-a",
     "port": 5432,
-    "database": "finalyearproject",
-    "user": "postgres",
-    "password": "admin1"
+    "database": "object_dimension_measure",
+    "user": "object_dimension_measure_user",
+    "password": "JPIIU4BbMIiDDlGszmQFhGqhFPsZT99g"
 }
 
 def connect_db():
     return psycopg2.connect(**DB_SETTINGS)
+# import os
+# import psycopg2
+# import psycopg2.extras
+# import json
+# from io import BytesIO
+# from urllib.parse import urlparse
+
+# def parse_database_url():
+#     url = os.getenv("postgresql://object_dimension_measure_user:JPIIU4BbMIiDDlGszmQFhGqhFPsZT99g@dpg-d0h37ejuibrs7385ja8g-a/object_dimension_measure")
+#     if not url:
+#         raise ValueError("DATABASE_URL environment variable not set")
+
+#     result = urlparse(url)
+#     return {
+#         "host": result.hostname,
+#         "port": result.port,
+#         "database": result.path[1:],  # remove leading slash
+#         "user": result.username,
+#         "password": result.password
+#     }
+
+# def connect_db():
+#     db_settings = parse_database_url()
+#     return psycopg2.connect(**db_settings)
+
+# # ... rest of your existing code ...
+
 
 def initialize_table():
     conn = connect_db()
