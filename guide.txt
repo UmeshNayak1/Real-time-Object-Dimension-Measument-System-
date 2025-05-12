@@ -1,0 +1,31 @@
+pip install streamlit opencv-python-headless torch torchvision transformers ultralytics Pillow matplotlib
+pip install psycopg2-binary
+
+
+
+to run : streamlit run app.py
+
+access from : http://localhost:8501
+python flask_backend.py
+
+
+Db name: FinalYearProject
+
+
+
+
+
+
+
+# YOLO + Depth Estimation Web App
+
+This is a fast, simple UI to run real-time and local image depth + object detection using:
+
+- YOLOv8n (Tiny) Object Detection
+- GLPN (Global-Local Path Network) Depth Estimation
+- Streamlit for quick frontend
+
+---
+
+## 📂 Folder Structure
+
