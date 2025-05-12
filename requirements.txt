@@ -1,7 +1,10 @@
 streamlit
-opencv-python-headless
+flask
+flask-cors
+gunicorn
 torch
 torchvision
+opencv-python-headless
 transformers
 ultralytics
 Pillow
