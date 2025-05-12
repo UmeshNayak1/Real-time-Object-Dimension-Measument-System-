@@ -475,186 +475,186 @@
 
 
 
-import os
-import requests
-import numpy as np
-from PIL import Image
-from io import BytesIO
-import streamlit as st
-from overkillpone import process_image  # Assuming this is the module for your YOLO model
-import database
+# import os
+# import requests
+# import numpy as np
+# from PIL import Image
+# from io import BytesIO
+# import streamlit as st
+# from overkillpone import process_image  # Assuming this is the module for your YOLO model
+# import database
 
-database.initialize_table()
+# database.initialize_table()
 
-st.set_page_config(page_title="YOLO + Depth Estimation App", layout="wide")
-st.title("📸 YOLO + Depth Estimation - IP Webcam, DroidCam USB (Flask), Local Upload")
+# st.set_page_config(page_title="YOLO + Depth Estimation App", layout="wide")
+# st.title("📸 YOLO + Depth Estimation - IP Webcam, DroidCam USB (Flask), Local Upload")
 
-page = st.sidebar.selectbox("Choose Page", ["Detect Objects", "View Saved Results"])
+# page = st.sidebar.selectbox("Choose Page", ["Detect Objects", "View Saved Results"])
 
-if page == "Detect Objects":
-    option = st.radio("Choose Input Source:", [
-        "IP Webcam",
-        "DroidCam USB (via Flask)",
-        "Local Image Upload"
-    ])
+# if page == "Detect Objects":
+#     option = st.radio("Choose Input Source:", [
+#         "IP Webcam",
+#         "DroidCam USB (via Flask)",
+#         "Local Image Upload"
+#     ])
     
 
     
-    # if option == "IP Webcam":
-    #     st.header("📱 IP Webcam")
-    #     ip_url = st.text_input("Enter IP Webcam Snapshot URL", value="http://192.168.29.79:8001/shot.jpg")
+#     # if option == "IP Webcam":
+#     #     st.header("📱 IP Webcam")
+#     #     ip_url = st.text_input("Enter IP Webcam Snapshot URL", value="http://192.168.29.79:8001/shot.jpg")
         
-    #     # Display live preview of IP Webcam
-    #     st.image(ip_url, caption="IP Webcam Feed")
+#     #     # Display live preview of IP Webcam
+#     #     st.image(ip_url, caption="IP Webcam Feed")
 
-    #     # Display live feed from IP Webcam and process frame on button click
-    #     if st.button("Start Live Preview"):
-    #         try:
-    #             # Fetch live feed continuously (we'll get latest snapshot every few seconds)
-    #             img_response = requests.get(ip_url, timeout=5)
-    #             if img_response.status_code == 200:
-    #                 img_array = np.asarray(bytearray(img_response.content), dtype=np.uint8)
-    #                 frame = Image.open(BytesIO(img_array)).convert("RGB")
-    #                 st.image(frame, caption="Live Camera Feed", use_container_width=True)
+#     #     # Display live feed from IP Webcam and process frame on button click
+#     #     if st.button("Start Live Preview"):
+#     #         try:
+#     #             # Fetch live feed continuously (we'll get latest snapshot every few seconds)
+#     #             img_response = requests.get(ip_url, timeout=5)
+#     #             if img_response.status_code == 200:
+#     #                 img_array = np.asarray(bytearray(img_response.content), dtype=np.uint8)
+#     #                 frame = Image.open(BytesIO(img_array)).convert("RGB")
+#     #                 st.image(frame, caption="Live Camera Feed", use_container_width=True)
 
-    #                 # Capture button
-    #                 if st.button("Capture and Process"):
-    #                     with st.spinner("Processing..."):
-    #                         output_image, depths, widths, heights, classes = process_image(frame)
-    #                     st.image(output_image, caption="Detection Result", use_container_width=True)
-    #                     st.success("Processing Done ✅")
+#     #                 # Capture button
+#     #                 if st.button("Capture and Process"):
+#     #                     with st.spinner("Processing..."):
+#     #                         output_image, depths, widths, heights, classes = process_image(frame)
+#     #                     st.image(output_image, caption="Detection Result", use_container_width=True)
+#     #                     st.success("Processing Done ✅")
 
-    #                     # Display results
-    #                     if classes:
-    #                         detections_list = []
-    #                         for i, cls in enumerate(classes):
-    #                             st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
-    #                             detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+#     #                     # Display results
+#     #                     if classes:
+#     #                         detections_list = []
+#     #                         for i, cls in enumerate(classes):
+#     #                             st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+#     #                             detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
 
-    #                         st.session_state["output_image"] = output_image
-    #                         st.session_state["detections_list"] = detections_list
-    #             else:
-    #                 st.error("❌ Could not reach IP Webcam URL.")
-    #         except Exception as e:
-    #             st.error(f"❌ Error: {e}")
+#     #                         st.session_state["output_image"] = output_image
+#     #                         st.session_state["detections_list"] = detections_list
+#     #             else:
+#     #                 st.error("❌ Could not reach IP Webcam URL.")
+#     #         except Exception as e:
+#     #             st.error(f"❌ Error: {e}")
     
     
-    if option == "IP Webcam":
-        st.header("📱 IP Webcam")
-        ip_url = st.text_input("Enter IP Webcam Snapshot URL", value="http://192.168.29.79:8001/shot.jpg")
-        if st.button("📸 Capture from IP Webcam"):
-            try:
-                response = requests.get(ip_url, timeout=5)
-                if response.status_code == 200:
-                    img_array = np.asarray(bytearray(response.content), dtype=np.uint8)
-                    frame = Image.open(BytesIO(img_array)).convert("RGB")
-                    st.image(frame, caption="Captured Frame", use_container_width=True)
+#     if option == "IP Webcam":
+#         st.header("📱 IP Webcam")
+#         ip_url = st.text_input("Enter IP Webcam Snapshot URL", value="http://192.168.29.79:8001/shot.jpg")
+#         if st.button("📸 Capture from IP Webcam"):
+#             try:
+#                 response = requests.get(ip_url, timeout=5)
+#                 if response.status_code == 200:
+#                     img_array = np.asarray(bytearray(response.content), dtype=np.uint8)
+#                     frame = Image.open(BytesIO(img_array)).convert("RGB")
+#                     st.image(frame, caption="Captured Frame", use_container_width=True)
 
-                    with st.spinner("Processing..."):
-                        output_image, depths, widths, heights, classes = process_image(frame)
+#                     with st.spinner("Processing..."):
+#                         output_image, depths, widths, heights, classes = process_image(frame)
 
-                    st.image(output_image, caption="Detection Result", use_container_width=True)
-                    st.success("Processing Done ✅")
+#                     st.image(output_image, caption="Detection Result", use_container_width=True)
+#                     st.success("Processing Done ✅")
 
-                    if classes:
-                        detections_list = []
-                        for i, cls in enumerate(classes):
-                            st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
-                            detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+#                     if classes:
+#                         detections_list = []
+#                         for i, cls in enumerate(classes):
+#                             st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+#                             detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
 
-                        st.session_state["output_image"] = output_image
-                        st.session_state["detections_list"] = detections_list
-                else:
-                    st.error("❌ Could not reach IP Webcam URL.")
-            except Exception as e:
-                st.error(f"❌ Error: {e}")
+#                         st.session_state["output_image"] = output_image
+#                         st.session_state["detections_list"] = detections_list
+#                 else:
+#                     st.error("❌ Could not reach IP Webcam URL.")
+#             except Exception as e:
+#                 st.error(f"❌ Error: {e}")
     
 
-    elif option == "DroidCam USB (via Flask)":
-        st.header("📷 Capture from DroidCam USB via Flask")
-        st.image("http://localhost:5000/preview", caption="Live Camera Feed")
+#     elif option == "DroidCam USB (via Flask)":
+#         st.header("📷 Capture from DroidCam USB via Flask")
+#         st.image("http://localhost:5000/preview", caption="Live Camera Feed")
 
-        # Capture button to process the current frame
-        if st.button("Capture and Process"):
-            try:
-                response = requests.get("http://localhost:5000/capture", timeout=5)
-                if response.status_code == 200:
-                    img_bytes = BytesIO(response.content)
-                    img_pil = Image.open(img_bytes).convert("RGB")
-                    st.image(img_pil, caption="Captured Frame", use_container_width=True)
+#         # Capture button to process the current frame
+#         if st.button("Capture and Process"):
+#             try:
+#                 response = requests.get("http://localhost:5000/capture", timeout=5)
+#                 if response.status_code == 200:
+#                     img_bytes = BytesIO(response.content)
+#                     img_pil = Image.open(img_bytes).convert("RGB")
+#                     st.image(img_pil, caption="Captured Frame", use_container_width=True)
 
-                    with st.spinner("Processing..."):
-                        output_image, depths, widths, heights, classes = process_image(img_pil)
+#                     with st.spinner("Processing..."):
+#                         output_image, depths, widths, heights, classes = process_image(img_pil)
 
-                    st.image(output_image, caption="Detection Result", use_container_width=True)
-                    st.success("Processing Done ✅")
+#                     st.image(output_image, caption="Detection Result", use_container_width=True)
+#                     st.success("Processing Done ✅")
 
-                    if classes:
-                        detections_list = []
-                        for i, cls in enumerate(classes):
-                            st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
-                            detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+#                     if classes:
+#                         detections_list = []
+#                         for i, cls in enumerate(classes):
+#                             st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+#                             detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
 
-                        st.session_state["output_image"] = output_image
-                        st.session_state["detections_list"] = detections_list
-                else:
-                    st.error("❌ Could not capture from Flask backend.")
-            except Exception as e:
-                st.error(f"❌ Error contacting Flask backend: {e}")
+#                         st.session_state["output_image"] = output_image
+#                         st.session_state["detections_list"] = detections_list
+#                 else:
+#                     st.error("❌ Could not capture from Flask backend.")
+#             except Exception as e:
+#                 st.error(f"❌ Error contacting Flask backend: {e}")
 
-    elif option == "Local Image Upload":
-        st.header("📁 Upload Local Image")
-        file = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png"])
-        if file:
-            img = Image.open(file).convert("RGB")
-            st.image(img, caption="Uploaded Image", use_container_width=True)
-            if st.button("Process Uploaded Image"):
-                with st.spinner("Processing..."):
-                    output_image, depths, widths, heights, classes = process_image(img)
+#     elif option == "Local Image Upload":
+#         st.header("📁 Upload Local Image")
+#         file = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png"])
+#         if file:
+#             img = Image.open(file).convert("RGB")
+#             st.image(img, caption="Uploaded Image", use_container_width=True)
+#             if st.button("Process Uploaded Image"):
+#                 with st.spinner("Processing..."):
+#                     output_image, depths, widths, heights, classes = process_image(img)
 
-                st.image(output_image, caption="Detection Result", use_container_width=True)
-                st.success("Processing Done ✅")
+#                 st.image(output_image, caption="Detection Result", use_container_width=True)
+#                 st.success("Processing Done ✅")
 
-                if classes:
-                    detections_list = []
-                    for i, cls in enumerate(classes):
-                        st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
-                        detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+#                 if classes:
+#                     detections_list = []
+#                     for i, cls in enumerate(classes):
+#                         st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+#                         detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
 
-                    st.session_state["output_image"] = output_image
-                    st.session_state["detections_list"] = detections_list
+#                     st.session_state["output_image"] = output_image
+#                     st.session_state["detections_list"] = detections_list
 
-    if "output_image" in st.session_state and "detections_list" in st.session_state:
-        if st.button("💾 Save to Database"):
-            database.save_result_to_db(
-                st.session_state["output_image"],
-                st.session_state["detections_list"]
-            )
-            st.success("✅ Saved to database.")
+#     if "output_image" in st.session_state and "detections_list" in st.session_state:
+#         if st.button("💾 Save to Database"):
+#             database.save_result_to_db(
+#                 st.session_state["output_image"],
+#                 st.session_state["detections_list"]
+#             )
+#             st.success("✅ Saved to database.")
 
-elif page == "View Saved Results":
-    st.header("📂 Saved Results")
-    results = database.load_saved_results()
+# elif page == "View Saved Results":
+#     st.header("📂 Saved Results")
+#     results = database.load_saved_results()
 
-    if results:
-        for row in results:
-            img_bytes = row['image']
-            detections = row['detections']
-            timestamp = row['timestamp']
-            result_id = row['id']
+#     if results:
+#         for row in results:
+#             img_bytes = row['image']
+#             detections = row['detections']
+#             timestamp = row['timestamp']
+#             result_id = row['id']
 
-            img_pil = Image.open(BytesIO(img_bytes))
-            time_str = timestamp.strftime('%Y-%m-%d %H:%M:%S') if timestamp else "Unknown"
+#             img_pil = Image.open(BytesIO(img_bytes))
+#             time_str = timestamp.strftime('%Y-%m-%d %H:%M:%S') if timestamp else "Unknown"
 
-            st.image(img_pil, caption=f"Saved on {time_str}", use_container_width=True)
-            st.write("Detections:")
-            st.json(eval(detections))
+#             st.image(img_pil, caption=f"Saved on {time_str}", use_container_width=True)
+#             st.write("Detections:")
+#             st.json(eval(detections))
 
-            if st.button(f"🗑️ Delete {result_id}", key=f"delete_{result_id}"):
-                database.delete_result(result_id)
-                st.success("Deleted. Refresh to update.")
-    else:
-        st.info("No saved results yet.")
+#             if st.button(f"🗑️ Delete {result_id}", key=f"delete_{result_id}"):
+#                 database.delete_result(result_id)
+#                 st.success("Deleted. Refresh to update.")
+#     else:
+#         st.info("No saved results yet.")
 
 
 
@@ -809,3 +809,161 @@ elif page == "View Saved Results":
 #                 st.success("Deleted. Refresh to update.")
 #     else:
 #         st.info("No saved results yet.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import os
+import requests
+import numpy as np
+from PIL import Image
+from io import BytesIO
+import streamlit as st
+from overkillpone import process_image
+import database
+
+# Set backend URL (used by DroidCam via Flask)
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:5000")
+
+# Initialize database
+database.initialize_table()
+
+st.set_page_config(page_title="YOLO + Depth Estimation App", layout="wide")
+st.title("📸 YOLO + Depth Estimation - IP Webcam, DroidCam USB (Flask), Local Upload")
+
+page = st.sidebar.selectbox("Choose Page", ["Detect Objects", "View Saved Results"])
+
+if page == "Detect Objects":
+    option = st.radio("Choose Input Source:", [
+        "IP Webcam",
+        "DroidCam USB (via Flask)",
+        "Local Image Upload"
+    ])
+
+    if option == "IP Webcam":
+        st.header("📱 IP Webcam")
+        ip_url = st.text_input("Enter IP Webcam Snapshot URL", value="http://192.168.29.79:8001/shot.jpg")
+        if st.button("📸 Capture from IP Webcam"):
+            try:
+                response = requests.get(ip_url, timeout=5)
+                if response.status_code == 200:
+                    img_array = np.asarray(bytearray(response.content), dtype=np.uint8)
+                    frame = Image.open(BytesIO(img_array)).convert("RGB")
+                    st.image(frame, caption="Captured Frame", use_container_width=True)
+
+                    with st.spinner("Processing..."):
+                        output_image, depths, widths, heights, classes = process_image(frame)
+
+                    st.image(output_image, caption="Detection Result", use_container_width=True)
+                    st.success("Processing Done ✅")
+
+                    if classes:
+                        detections_list = []
+                        for i, cls in enumerate(classes):
+                            st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+                            detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+
+                        st.session_state["output_image"] = output_image
+                        st.session_state["detections_list"] = detections_list
+                else:
+                    st.error("❌ Could not reach IP Webcam URL.")
+            except Exception as e:
+                st.error(f"❌ Error: {e}")
+
+    elif option == "DroidCam USB (via Flask)":
+        st.header("📷 Capture from DroidCam USB via Flask")
+        st.image(f"{BACKEND_URL}/preview", caption="Live Camera Feed")
+
+        if st.button("Capture and Process"):
+            try:
+                response = requests.get(f"{BACKEND_URL}/capture", timeout=5)
+                if response.status_code == 200:
+                    img_bytes = BytesIO(response.content)
+                    img_pil = Image.open(img_bytes).convert("RGB")
+                    st.image(img_pil, caption="Captured Frame", use_container_width=True)
+
+                    with st.spinner("Processing..."):
+                        output_image, depths, widths, heights, classes = process_image(img_pil)
+
+                    st.image(output_image, caption="Detection Result", use_container_width=True)
+                    st.success("Processing Done ✅")
+
+                    if classes:
+                        detections_list = []
+                        for i, cls in enumerate(classes):
+                            st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+                            detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+
+                        st.session_state["output_image"] = output_image
+                        st.session_state["detections_list"] = detections_list
+                else:
+                    st.error("❌ Could not capture from Flask backend.")
+            except Exception as e:
+                st.error(f"❌ Error contacting Flask backend: {e}")
+
+    elif option == "Local Image Upload":
+        st.header("📁 Upload Local Image")
+        file = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png"])
+        if file:
+            img = Image.open(file).convert("RGB")
+            st.image(img, caption="Uploaded Image", use_container_width=True)
+            if st.button("Process Uploaded Image"):
+                with st.spinner("Processing..."):
+                    output_image, depths, widths, heights, classes = process_image(img)
+
+                st.image(output_image, caption="Detection Result", use_container_width=True)
+                st.success("Processing Done ✅")
+
+                if classes:
+                    detections_list = []
+                    for i, cls in enumerate(classes):
+                        st.write(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+                        detections_list.append(f"{cls}: Depth={depths[i]:.2f}, Width={widths[i]:.2f}, Height={heights[i]:.2f}")
+
+                    st.session_state["output_image"] = output_image
+                    st.session_state["detections_list"] = detections_list
+
+    if "output_image" in st.session_state and "detections_list" in st.session_state:
+        if st.button("💾 Save to Database"):
+            database.save_result_to_db(
+                st.session_state["output_image"],
+                st.session_state["detections_list"]
+            )
+            st.success("✅ Saved to database.")
+
+elif page == "View Saved Results":
+    st.header("📂 Saved Results")
+    results = database.load_saved_results()
+
+    if results:
+        for row in results:
+            img_bytes = row['image']
+            detections = row['detections']
+            timestamp = row['timestamp']
+            result_id = row['id']
+
+            img_pil = Image.open(BytesIO(img_bytes))
+            time_str = timestamp.strftime('%Y-%m-%d %H:%M:%S') if timestamp else "Unknown"
+
+            st.image(img_pil, caption=f"Saved on {time_str}", use_container_width=True)
+            st.write("Detections:")
+            st.json(eval(detections))
+
+            if st.button(f"🗑️ Delete {result_id}", key=f"delete_{result_id}"):
+                database.delete_result(result_id)
+                st.success("Deleted. Refresh to update.")
+    else:
+        st.info("No saved results yet.")
