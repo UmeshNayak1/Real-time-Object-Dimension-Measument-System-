@@ -215,7 +215,3 @@ Detected measurements are saved into the database for future reference.
 -   Convert the system into a **web application**
 
 ------------------------------------------------------------------------
-
-
-⭐ If you found this project useful, consider **starring the
-repository**!
