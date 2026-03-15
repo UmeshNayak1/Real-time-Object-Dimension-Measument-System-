@@ -1,10 +1,10 @@
 # 📏 Real-Time Object Dimension Measurement System
 
 A **Computer Vision based system** that measures the **real-world
-dimensions of objects in real time using a camera**.\
-This project uses **OpenCV and Machine Learning techniques** to detect
-objects and estimate their width and height directly from images or live
-webcam input.
+dimensions of objects in real time using a camera**. This project uses
+**OpenCV and image processing techniques** to detect objects and
+estimate their width and height directly from images or live webcam
+input.
 
 The system demonstrates how **image processing, object detection, and
 pixel-to-real-world scaling** can be used to automatically measure
@@ -44,27 +44,14 @@ computer vision.
 
 The system follows a computer vision pipeline:
 
-1️⃣ **Image Capture**\
-The camera captures the input frame.
-
-2️⃣ **Image Preprocessing**\
-The image is converted to grayscale and blurred to remove noise.
-
-3️⃣ **Edge Detection**\
-Edges of objects are detected using OpenCV techniques.
-
-4️⃣ **Contour Detection**\
-Contours are extracted to identify the object's boundary.
-
-5️⃣ **Reference Calibration**\
-A reference object is used to calculate the **pixels-per-metric ratio**.
-
-6️⃣ **Dimension Calculation**\
-The width and height of the object are calculated using geometric
-formulas.
-
-7️⃣ **Visualization**\
-The measured dimensions are displayed directly on the screen.
+1.  **Image Capture** -- Capture input frame from camera or image.
+2.  **Image Preprocessing** -- Convert image to grayscale and remove
+    noise.
+3.  **Edge Detection** -- Detect object edges using OpenCV.
+4.  **Contour Detection** -- Extract contours to find object boundaries.
+5.  **Reference Calibration** -- Calculate pixels-per-metric ratio.
+6.  **Dimension Calculation** -- Measure width and height of objects.
+7.  **Visualization** -- Display measurements directly on the screen.
 
 ------------------------------------------------------------------------
 
@@ -97,27 +84,33 @@ The measured dimensions are displayed directly on the screen.
     ├── object_detector.py
     ├── images/
     │   └── sample images
-    ├── output/
-    │   └── measured results
+    ├── Outputs/
+    │   ├── Picture1.jpg
+    │   ├── Picture2.jpg
+    │   ├── Picture3.jpg
+    │   ├── Picture4.jpg
+    │   ├── Picture5.jpg
+    │   ├── Picture6.jpg
+    │   └── Picture7.jpg
     └── README.md
 
 ------------------------------------------------------------------------
 
 # ⚙️ Installation
 
-### 1. Clone the Repository
+### Clone the Repository
 
 ``` bash
 git clone https://github.com/UmeshNayak1/Real-time-Object-Dimension-Measument-System-.git
 ```
 
-### 2. Navigate to Project Folder
+### Navigate to Project Folder
 
 ``` bash
 cd Real-time-Object-Dimension-Measument-System-
 ```
 
-### 3. Install Dependencies
+### Install Dependencies
 
 ``` bash
 pip install opencv-python numpy imutils
@@ -139,8 +132,67 @@ python measure_object_size_camera.py
 python measure_object_size.py
 ```
 
-The system will detect the object and display **width and height
+The system will detect objects and display **width and height
 measurements** on the screen.
+
+------------------------------------------------------------------------
+
+# 📸 Project Outputs
+
+## Fig 1 -- Home Page to Upload Local Images
+
+Users can upload local images to detect objects and measure their
+dimensions.
+
+![Home Page Upload Local Image](Outputs/Picture1.jpg)
+
+------------------------------------------------------------------------
+
+## Fig 2 -- Home Page to Upload from IP Webcam (Real-time)
+
+The system supports real-time object measurement using an IP webcam.
+
+![IP Webcam Upload](Outputs/Picture2.jpg)
+
+------------------------------------------------------------------------
+
+## Fig 3 -- Detected Objects from Local Image Testing (Book)
+
+The system detects a book and calculates its dimensions.
+
+![Book Detection](Outputs/Picture3.jpg)
+
+------------------------------------------------------------------------
+
+## Fig 4 -- Detected Objects from Local Image Testing (Bottle)
+
+Object detection and measurement applied to a bottle.
+
+![Bottle Detection](Outputs/Picture4.jpg)
+
+------------------------------------------------------------------------
+
+## Fig 5 -- Detected Objects from Real-time Images Testing (Remote)
+
+The system measures object dimensions using live camera feed.
+
+![Remote Detection](Outputs/Picture5.jpg)
+
+------------------------------------------------------------------------
+
+## Fig 6 -- Detected Objects from Real-time Images (Mouse)
+
+Real-time detection and dimension measurement of a mouse device.
+
+![Mouse Detection](Outputs/Picture6.jpg)
+
+------------------------------------------------------------------------
+
+## Fig 7 -- Saved Result in Database
+
+Detected measurements are saved into the database for future reference.
+
+![Database Result](Outputs/Picture7.jpg)
 
 ------------------------------------------------------------------------
 
@@ -158,22 +210,11 @@ measurements** on the screen.
 
 -   Improve measurement accuracy using calibration
 -   Integrate **deep learning object detection (YOLO)**
--   Support multiple objects measurement
+-   Support multiple object measurement
 -   Build a **GUI interface**
 -   Convert the system into a **web application**
 
 ------------------------------------------------------------------------
-
-# 📸 Example Output
-
-Detected objects will display:
-
-    Width: XX cm
-    Height: XX cm
-
-Bounding boxes and measurements are drawn directly on the object.
-
-
 
 
 ⭐ If you found this project useful, consider **starring the
