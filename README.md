@@ -1,113 +1,180 @@
-📏 Real-Time Object Dimension Measurement System
+# 📏 Real-Time Object Dimension Measurement System
 
-A computer vision–based system that measures the dimensions of real-world objects in real time using a camera.
-The system uses image processing techniques to detect objects, calculate their size, and display measurements instantly.
+A **Computer Vision based system** that measures the **real-world
+dimensions of objects in real time using a camera**.\
+This project uses **OpenCV and Machine Learning techniques** to detect
+objects and estimate their width and height directly from images or live
+webcam input.
 
-This project demonstrates the practical application of computer vision and image processing using OpenCV to estimate object dimensions from images or live camera input. Real-time measurement systems like this are widely used in manufacturing, robotics, and automation environments where quick size estimation is required.
+The system demonstrates how **image processing, object detection, and
+pixel-to-real-world scaling** can be used to automatically measure
+object dimensions.
 
-🚀 Features
+------------------------------------------------------------------------
 
-✔ Real-time object detection using a webcam
-✔ Automatic contour detection and object boundary extraction
-✔ Measurement of width and height of objects
-✔ Real-time display of calculated dimensions
-✔ Image processing using OpenCV
-✔ Works with both images and live camera feed
+# 🚀 Project Overview
 
-🧠 How It Works
+Estimating the size of real-world objects using a camera is useful in
+many industries such as:
 
-The system follows these steps:
+-   📦 Logistics
+-   🏭 Manufacturing
+-   🤖 Robotics
+-   🛒 E‑commerce
+-   📏 Automated inspection systems
 
-1️⃣ Image Acquisition
-The camera captures a frame containing the object.
+This project provides a **lightweight and efficient solution** that
+detects objects and calculates their **dimensions in real time** using
+computer vision.
 
-2️⃣ Preprocessing
-The image is converted to grayscale and filtered to remove noise.
+------------------------------------------------------------------------
 
-3️⃣ Edge Detection
-Edges of the object are detected using computer vision algorithms.
+# ✨ Key Features
 
-4️⃣ Contour Detection
-Contours are identified to locate the object boundaries.
+✔ Real-time object detection using webcam\
+✔ Automatic edge and contour detection\
+✔ Width and height measurement of objects\
+✔ Pixel-to-real-world conversion for accurate measurement\
+✔ Bounding box visualization\
+✔ Works with both **images and live camera feed**
 
-5️⃣ Dimension Calculation
-The system calculates the width and height of the object using pixel-to-real-world scaling.
+------------------------------------------------------------------------
 
-6️⃣ Visualization
+# 🧠 How the System Works
+
+The system follows a computer vision pipeline:
+
+1️⃣ **Image Capture**\
+The camera captures the input frame.
+
+2️⃣ **Image Preprocessing**\
+The image is converted to grayscale and blurred to remove noise.
+
+3️⃣ **Edge Detection**\
+Edges of objects are detected using OpenCV techniques.
+
+4️⃣ **Contour Detection**\
+Contours are extracted to identify the object's boundary.
+
+5️⃣ **Reference Calibration**\
+A reference object is used to calculate the **pixels-per-metric ratio**.
+
+6️⃣ **Dimension Calculation**\
+The width and height of the object are calculated using geometric
+formulas.
+
+7️⃣ **Visualization**\
 The measured dimensions are displayed directly on the screen.
 
-🛠️ Tech Stack
+------------------------------------------------------------------------
 
-Programming Language
+# 🛠 Tech Stack
 
-Python
+### Programming Language
 
-Libraries
+-   Python
 
-OpenCV
+### Libraries
 
-NumPy
+-   OpenCV
+-   NumPy
+-   imutils
 
-Tools
+### Tools
 
-Webcam / Camera
+-   Webcam / Camera
+-   VS Code / PyCharm
+-   Git & GitHub
 
-Python IDE (VS Code / PyCharm)
+------------------------------------------------------------------------
 
-📂 Project Structure
-Real-time-Object-Dimension-Measument-System
-│
-├── measure_object_size.py
-├── measure_object_size_camera.py
-├── object_detector.py
-├── images/
-│   └── sample_images
-├── output/
-│   └── result_images
-└── README.md
-⚙️ Installation
-1️⃣ Clone the Repository
+# 📂 Project Structure
+
+    Real-time-Object-Dimension-Measument-System
+    │
+    ├── measure_object_size.py
+    ├── measure_object_size_camera.py
+    ├── object_detector.py
+    ├── images/
+    │   └── sample images
+    ├── output/
+    │   └── measured results
+    └── README.md
+
+------------------------------------------------------------------------
+
+# ⚙️ Installation
+
+### 1. Clone the Repository
+
+``` bash
 git clone https://github.com/UmeshNayak1/Real-time-Object-Dimension-Measument-System-.git
-2️⃣ Navigate to the Project Folder
+```
+
+### 2. Navigate to Project Folder
+
+``` bash
 cd Real-time-Object-Dimension-Measument-System-
-3️⃣ Install Dependencies
-pip install opencv-python numpy
-▶️ Usage
-Run with Webcam
+```
+
+### 3. Install Dependencies
+
+``` bash
+pip install opencv-python numpy imutils
+```
+
+------------------------------------------------------------------------
+
+# ▶️ Usage
+
+### Run with Webcam
+
+``` bash
 python measure_object_size_camera.py
-Run with Image Input
+```
+
+### Run with Image
+
+``` bash
 python measure_object_size.py
+```
 
-The program will detect objects and display their measured dimensions on the screen.
+The system will detect the object and display **width and height
+measurements** on the screen.
 
-📊 Applications
+------------------------------------------------------------------------
 
-This system can be used in many fields:
+# 📊 Applications
 
-📦 E-commerce product measurement
+-   📦 Product dimension measurement for e‑commerce
+-   🏭 Industrial quality control
+-   🤖 Robotics and automation
+-   🚚 Logistics and packaging systems
+-   🎓 Computer vision research and education
 
-🏭 Industrial quality control
+------------------------------------------------------------------------
 
-🤖 Robotics and automation
+# 🔮 Future Improvements
 
-🚗 Autonomous systems
+-   Improve measurement accuracy using calibration
+-   Integrate **deep learning object detection (YOLO)**
+-   Support multiple objects measurement
+-   Build a **GUI interface**
+-   Convert the system into a **web application**
 
-📏 Educational computer vision projects
+------------------------------------------------------------------------
 
-📸 Output Example
+# 📸 Example Output
 
-Example output shows detected objects with bounding boxes and dimension labels.
+Detected objects will display:
 
-Width: XX cm
-Height: XX cm
-🎯 Future Improvements
+    Width: XX cm
+    Height: XX cm
 
-Improve measurement accuracy
+Bounding boxes and measurements are drawn directly on the object.
 
-Add deep learning based object detection
 
-Support multiple object measurements simultaneously
 
-Build a GUI interface
 
-Deploy as a web application
+⭐ If you found this project useful, consider **starring the
+repository**!
